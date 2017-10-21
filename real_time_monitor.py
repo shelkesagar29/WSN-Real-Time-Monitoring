@@ -30,7 +30,7 @@ plot it using matplotlib plotting library.
 Since plotting with matplotlib is a blocking operation, we had option to choose either threading or processing.
 
 Threading: This is easy because all threads within a process share a common memory space. BUT problem is matplotlib
-does not run as a thread.(Since all threads were not intended for CPU operation, GIL is NOT an issue.)
+does not run as a thread.(Since all threads were not intended for CPU operation, GIL was NOT an issue.)
 
 Thus we moved to multiprocessing by sharing(passing) data structures to each process.
 
@@ -38,6 +38,11 @@ What processes are running?
 1. Fetch data from MQTT server
 2. Plot data in real time
 3. Plot Position
+
+* NOTE 
+MQTT is a client sever protocol. We have two clients talking to the public MQTT broker (iot.eclipse.org) on the same topic. 
+Raspberry Pi being first is collecting data from all sensors and publishing, this program being second client is fetching data
+from server.
 
 """
 
